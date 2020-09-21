@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 let Note = require('./models/note.model');
-const mailer = require("./email-sender");
+// const mailer = require("./email-sender");
 
 require('dotenv').config();
 
