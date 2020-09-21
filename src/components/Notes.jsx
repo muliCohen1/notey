@@ -7,25 +7,38 @@ class Notes extends React.Component {
   constructor() {
     super();
     this.state = {
-      notes: []
+      notes: [],
+      cloudAccess: false,
     }
     this.updateOuterState = this.updateOuterState.bind(this);
     this.deleteNote = this.deleteNote.bind(this); 
   }
   
   componentDidMount() {
+    if (JSON.parse(localStorage.getItem("savedNotes"))){
+      this.setState({
+          notes: JSON.parse(localStorage.getItem("savedNotes"))
+      })
+  }
     axios.get("http://localhost:5000/notes")
     .then(res => {
       this.setState({
         notes: res.data, 
       })
-      console.log(res.data);
+      this.setState({ cloudAccess: true })
     })
     .catch(error => {
       console.log(error);
+      this.setState({ cloudAccess: false })
     })
   }
   
+  componentDidUpdate() {
+    if(!this.state.cloudAccess)
+      localStorage.setItem("savedNotes", JSON.stringify(this.state.notes))
+  }
+
+
   updateOuterState(note) {
     this.setState(prevState => ({
       notes: [...prevState.notes, note]
