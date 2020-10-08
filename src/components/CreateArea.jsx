@@ -7,12 +7,6 @@ import axios from "axios";
 class CreateArea extends React.Component {
   constructor() {
     super();
-    
-    this.onChangeTitle = this.onChangeTitle.bind(this);
-    this.onChangeContent = this.onChangeContent.bind(this);
-    this.expandArea = this.expandArea.bind(this);
-    this.submitNote = this.submitNote.bind(this);
-    
     this.state = {
       heading: "",
       description: "",
@@ -20,25 +14,25 @@ class CreateArea extends React.Component {
     }
   }
   
-  onChangeTitle(event) {
+  onChangeTitle = (event) => {
     this.setState({
       heading: event.target.value
     })
   }
   
-  onChangeContent(event) {
+  onChangeContent = (event) => {
     this.setState({
       description: event.target.value
     })
   }
   
-  expandArea() {
+  expandArea = () => {
     this.setState({
       expanded: true
     })
   }
   
-  submitNote(event) {
+  submitNote = (event) => {
     event.preventDefault();
     const note = {
       heading: this.state.heading,

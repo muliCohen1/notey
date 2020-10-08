@@ -10,8 +10,6 @@ class Notes extends React.Component {
       notes: [],
       cloudAccess: false,
     }
-    this.updateOuterState = this.updateOuterState.bind(this);
-    this.deleteNote = this.deleteNote.bind(this); 
   }
   
   componentDidMount() {
@@ -39,14 +37,14 @@ class Notes extends React.Component {
   }
 
 
-  updateOuterState(note) {
+  updateOuterState = (note) => {
     this.setState(prevState => ({
       notes: [...prevState.notes, note]
     })
     );
   }
   
-  deleteNote(_id) {
+  deleteNote = (_id) => {
     this.setState(prevState => ({
       notes: prevState.notes.filter(noteItem => noteItem._id !== _id)
     })
